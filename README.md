@@ -14,6 +14,16 @@ perfTest({
   scriptName: "script.js",
 });
 perfTest({ scriptName: "anotherScript.js" });
+
+// Example output:
+/**
+ * Running Performance Testing 🕵️‍♂️
+ * - Number of runs: 200
+ * - Test script: example.js
+ *
+ * RESULT:
+ * - Average parsing time is 5.98ms
+ */
 ```
 
 ## Options

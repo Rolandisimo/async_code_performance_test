@@ -8,7 +8,7 @@ function logStart(numberOfRuns, testScript) {
 }
 function logEnd(time) {
   console.log("\x1b[1m", "\nRESULT:")
-  console.log("\x1b[0m%s\x1b[33m","- Average parsing time is", `${time}ms`);
+  console.log("\x1b[0m%s\x1b[33m","- Average script execution time is", `${time}ms`);
 }
 
 export default async ({
