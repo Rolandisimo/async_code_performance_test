@@ -17,28 +17,32 @@ if (!process.env.TEST_SCRIPT) {
 }
 
 (async () => {
-  const numberOfRuns = process.env.TEST_RUNS || 100;
-  const arr = new Array(numberOfRuns).fill(0);
+  try {
+    const numberOfRuns = process.env.TEST_RUNS || 100;
+    const arr = new Array(numberOfRuns).fill(0);
 
-  logStart(numberOfRuns, process.env.TEST_SCRIPT);
+    logStart(numberOfRuns, process.env.TEST_SCRIPT);
 
-  const times = [];
-  for (let _ in arr) {
-    const time = await new Promise((resolve, reject) => {
-      const proc = spawn("node", [process.env.TEST_SCRIPT]);
+    const times = [];
+    for (let _ in arr) {
+      const time = await new Promise((resolve, reject) => {
+        const proc = spawn("node", [process.env.TEST_SCRIPT]);
 
-      proc.stdout.on("data", (data) => {
-        if (data.toString().match(/^\d+|\d+\.\d+$/g)) {
-          resolve(+data.toString())
-        }
+        proc.stdout.on("data", (data) => {
+          if (data.toString().match(/^\d+|\d+\.\d+$/g)) {
+            resolve(+data.toString())
+          }
+        })
+        proc.stderr.on("data", (error) => {
+          reject(error.toString());
+        })
       })
-      proc.stderr.on("data", (error) => {
-        reject(error.toString());
-      })
-    })
 
-    times.push(time);
+      times.push(time);
+    }
+
+    logEnd(getAverage(times));
+  } catch (error) {
+    console.error(error);
   }
-
-  logEnd(getAverage(times));
 })()

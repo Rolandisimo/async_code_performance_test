@@ -4,8 +4,8 @@ Run `index.js` with 1-2 Node environment variables.
 - TEST_RUNS - number of times your TEST_SCRIPT will be run. The higher the number the slower the test, but more accurate the results. By default runs 100 times.
 
 ## Usage
-- TEST_SCRIPT=my_script.js node index.js
-- TEST_RUNS=5 TEST_SCRIPT=my_script.js node index.js
+- `TEST_SCRIPT=my_script.js node index.js`
+- `TEST_RUNS=5 TEST_SCRIPT=my_script.js node index.js`
 
 ## Examples
 - Check examples folder
