@@ -1,7 +1,7 @@
 {
   "name": "simple_async_perf_tester",
-  "version": "2.0.0",
-  "description": "Run `index.js` with 1-2 Node environment variables. - TEST_SCRIPT - the script that registers start and end times, runs your code and outputs the delta time to stdout - TEST_RUNS (optional) - number of times your TEST_SCRIPT will be run. The higher the number the slower the test, but more accurate the results. By default runs 100 times.",
+  "version": "2.0.1",
+  "description": "Simple, independent async code performance tester",
   "main": "build/index.js",
   "directories": {
     "example": "examples"

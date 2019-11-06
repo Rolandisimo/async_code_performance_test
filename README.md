@@ -1,3 +1,5 @@
+Simple, independent async code performance tester 🕵️
+
 ## Install
 `npm i --save-dev simple_async_perf_tester`<br/>
 or<br/>
