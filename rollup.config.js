@@ -5,13 +5,10 @@ import commonjs from 'rollup-plugin-commonjs';
 
 export default [
   {
-    input: 'index.js',
+    input: 'src/index.js',
     output: {
       file: 'build/index.js',
       format: 'cjs'
-      // { file: pkg.browser, format: 'umd', name: 'MyLib' },
-      // { file: pkg.main, format: 'cjs' },
-      // { file: pkg.module, format: 'es' },
     },
     plugins: [
       babel({

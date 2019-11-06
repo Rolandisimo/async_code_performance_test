@@ -1,14 +1,30 @@
-## Usage
-Run `index.js` with 1-2 Node environment variables.
-- TEST_SCRIPT - the script that registers start and end times, runs your code and outputs the delta time to stdout
-- TEST_RUNS (optional) - number of times your TEST_SCRIPT will be run. The higher the number the slower the test, but more accurate the results. By default runs 100 times.
+## Install
+`npm i --save-dev simple_async_perf_tester`<br/>
+or<br/>
+`yarn --dev simple_async_perf_tester`
 
 ## Usage
-- `TEST_SCRIPT=examples/example_then.js node index.js`
-- `TEST_RUNS=5 TEST_SCRIPT=examples/example_await.js node index.js`
+```javascript
+const perfTest = require("simple_async_perf_tester"); // or ES6 import
 
-## Examples
-- Check examples folder
+perfTest({
+  numberOfRuns: 5,
+  scriptName: "script.js",
+});
+perfTest({ scriptName: "anotherScript.js" });
+```
+
+## Options
+Options to pass to the performace execution function
+```javascript
+const options = {
+  numberOfRuns: 100, // OPTIONAL. A positive integer. Defaults to 50
+  scriptName: "parse.js", // Path to the testing script that outputs delta execution time. See `examples` folder
+}
+```
+
+## Example test scripts
+Check [examples](https://github.com/Rolandisimo/async_code_performance_test/tree/master/examples) folder
 
 ## Reason
 I decided to save this example repo because of unexpected issues I ran into while testing async code execution using `Promise.all`. What I observed is that by increasing the number of runs, the average execution time increased linearly.

@@ -11,26 +11,33 @@ function logEnd(time) {
   console.log("\x1b[0m%s\x1b[33m","- Average parsing time is", `${time}ms`);
 }
 
-export default async () => {
-  if (!process.env.TEST_SCRIPT) {
-    console.error("You have to pass a TEST_SCRIPT env variable ❌")
+export default async ({
+  numberOfRuns = 50,
+  scriptName,
+}) => {
+  if (!scriptName) {
+    console.error("\x1b[33m", "You have to pass a value for scriptName in options")
+    process.exit(1);
+  }
+  if (!numberOfRuns.match(/^\d+$/g)) {
+    console.error("\x1b[33m", "Number of runs can only be a positive integer")
     process.exit(1);
   }
 
   try {
-    const numberOfRuns = process.env.TEST_RUNS || 100;
     const arr = new Array(numberOfRuns).fill(0);
 
-    logStart(numberOfRuns, process.env.TEST_SCRIPT);
+    logStart(numberOfRuns, scriptName);
 
     const times = [];
     for (let _ in arr) {
       const time = await new Promise((resolve, reject) => {
-        const proc = spawn("node", [process.env.TEST_SCRIPT]);
+        const proc = spawn("node", [scriptName]);
 
         proc.stdout.on("data", (data) => {
-          if (data.toString().match(/^\d+|\d+\.\d+$/g)) {
-            resolve(+data.toString())
+          const stringifiedResult = data.toString();
+          if (stringifiedResult.match(/^\d+|\d+\.\d+$/g)) {
+            resolve(+stringifiedResult)
           }
         })
         proc.stderr.on("data", (error) => {
