@@ -1,6 +1,6 @@
 {
   "name": "simple_async_perf_tester",
-  "version": "2.0.4",
+  "version": "2.0.5",
   "description": "Simple, independent async code performance tester",
   "main": "build/index.js",
   "directories": {
