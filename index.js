@@ -33,7 +33,7 @@ if (!process.env.TEST_SCRIPT) {
         }
       })
       proc.stderr.on("data", (error) => {
-        reject(error);
+        reject(error.toString());
       })
     })
 
