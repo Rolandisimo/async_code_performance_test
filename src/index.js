@@ -19,7 +19,7 @@ export default async ({
     console.error("\x1b[33m", "You have to pass a value for scriptName in options")
     process.exit(1);
   }
-  if (!numberOfRuns.match(/^\d+$/g)) {
+  if (typeof numberOfRuns !== "number" || numberOfRuns < 1) {
     console.error("\x1b[33m", "Number of runs can only be a positive integer")
     process.exit(1);
   }
