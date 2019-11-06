@@ -1,4 +1,4 @@
-const getAverage = require("./getAverage");
+import { getAverage } from "./getAverage";
 const spawn = require("child_process").spawn;
 
 function logStart(numberOfRuns, testScript) {
@@ -11,12 +11,12 @@ function logEnd(time) {
   console.log("\x1b[0m%s\x1b[33m","- Average parsing time is", `${time}ms`);
 }
 
-if (!process.env.TEST_SCRIPT) {
-  console.error("You have to pass a TEST_SCRIPT env variable ❌")
-  process.exit(1);
-}
+export default async () => {
+  if (!process.env.TEST_SCRIPT) {
+    console.error("You have to pass a TEST_SCRIPT env variable ❌")
+    process.exit(1);
+  }
 
-(async () => {
   try {
     const numberOfRuns = process.env.TEST_RUNS || 100;
     const arr = new Array(numberOfRuns).fill(0);
@@ -46,4 +46,4 @@ if (!process.env.TEST_SCRIPT) {
     console.error(error);
     process.exit(1);
   }
-})()
+}
