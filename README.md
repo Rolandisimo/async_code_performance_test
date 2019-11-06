@@ -1,11 +1,11 @@
 ## Usage
 Run `index.js` with 1-2 Node environment variables.
 - TEST_SCRIPT - the script that registers start and end times, runs your code and outputs the delta time to stdout
-- TEST_RUNS - number of times your TEST_SCRIPT will be run. The higher the number the slower the test, but more accurate the results. By default runs 100 times.
+- TEST_RUNS (optional) - number of times your TEST_SCRIPT will be run. The higher the number the slower the test, but more accurate the results. By default runs 100 times.
 
 ## Usage
-- `TEST_SCRIPT=my_script.js node index.js`
-- `TEST_RUNS=5 TEST_SCRIPT=my_script.js node index.js`
+- `TEST_SCRIPT=examples/example_then.js node index.js`
+- `TEST_RUNS=5 TEST_SCRIPT=examples/example_await.js node index.js`
 
 ## Examples
 - Check examples folder

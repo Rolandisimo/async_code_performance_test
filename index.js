@@ -44,5 +44,6 @@ if (!process.env.TEST_SCRIPT) {
     logEnd(getAverage(times));
   } catch (error) {
     console.error(error);
+    process.exit(1);
   }
 })()
