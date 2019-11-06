@@ -28,7 +28,9 @@ if (!process.env.TEST_SCRIPT) {
       const proc = spawn("node", [process.env.TEST_SCRIPT]);
 
       proc.stdout.on("data", (data) => {
-        resolve(+data.toString().trim())
+        if (data.toString().match(/^\d+|\d+\.\d+$/g)) {
+          resolve(+data.toString())
+        }
       })
       proc.stderr.on("data", (error) => {
         reject(error);
